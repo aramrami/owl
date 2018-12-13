@@ -67,5 +67,4 @@ opening and triaging issues, but carries with it a necessary review and approval
 workflow that ensures that the proposed changes meet the minimal quality and
 functional guidelines of the Project Owl project.
 
-[Technical Steering Committee (TSC) repository]: https://github.com/nodejs/TSC/issues
 [Project Owl Slack workspace]: https://project--owl.slack.com
