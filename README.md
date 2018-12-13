@@ -21,7 +21,7 @@ Learn more @ [ClusterDuck](https://github.com/Project-OWL/owl/tree/master/Hardwa
 
 As a developer you can build experiences for Owl Software.  These experiences are accessible from the conversational interface.  Examples of experiences to create for Owl are:  a weather forecasting app, and leadership and management structure app, messaging app, a translation app, or a predictive data analytics app.
 
-We are looking for passionate developers who would like to contribute to this software ecosystem.  While the app development environment is under construction for Owl please reach out to <contributing@project-owl.com> if you are interested in contributing and we will provide more information about the technology and how to build with it.
+We are looking for passionate developers who would like to contribute to this software ecosystem.  While the app development environment is under construction for Owl please reach out to <contributing@project-owl.com> if you are interested in contributing and we will provide more information about the technology and how to build with it. You can see [general guidelines here](CONTRIBUTING.md).
 
 Apps for Owl are created simply using HTML, CSS, and JS.  If you have built a web site before, you can build an app for Owl.
 
