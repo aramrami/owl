@@ -1,5 +1,7 @@
-Bryan Knouse
-Magus Pereira
-Nicholas Feuer
-Charlie Evans
-Taraqur Rahman
+# Authors
+
+- Bryan Knouse
+- Magus Pereira
+- Nicholas Feuer
+- Charlie Evans
+- Taraqur Rahman

@@ -1,4 +1,4 @@
-# Contributing to OWL and Clusterduck (Project Owl)
+# Contributing to OWL and ClusterDuck (Project Owl)
 
 * [Code of Conduct](#code-of-conduct)
 * [Issues](#issues)

@@ -26,7 +26,7 @@ so that you can make the actual changes. This is where we will start.
   * [Respect the minimum wait time for comments](#respect-the-minimum-wait-time-for-comments)
   * [Abandoned or Stalled Pull Requests](#abandoned-or-stalled-pull-requests)
   * [Approving a change](#approving-a-change)
-  * [Accept that there are different opinions about what belongs in Project Owl](#accept-that-there-are-different-opinions-about-what-belongs-in-nodejs)
+  * [Accept that there are different opinions about what belongs in Project Owl](#accept-that-there-are-different-opinions-about-what-belongs-in-project-owl)
   * [Performance is not everything](#performance-is-not-everything)
   * [Continuous Integration Testing](#continuous-integration-testing)
 * [Notes](#notes)
@@ -57,7 +57,7 @@ locally.
 
 ```text
 $ git clone git@github.com:username/owl.git
-$ cd node
+$ cd owl
 $ git remote add upstream https://github.com/Project-Owl/owl.git
 $ git fetch upstream
 ```
@@ -431,20 +431,10 @@ feedback.
 
 ### Continuous Integration Testing
 
-All Pull Requests that contain changes to code must be run through
-continuous integration (CI) testing at [https://ci.nodejs.org/][].
-
-Only Project Owl core Collaborators with commit rights to the `Project-Owl/owl`
-repository may start a CI testing run. The specific details of how to do
-this are included in the new Collaborator [Onboarding guide][].
-
-Ideally, the code change will pass ("be green") on all platform configurations
-supported by Project Owl (there are over 30 platform configurations currently).
-This means that all tests pass and there are no linting errors. In reality,
-however, it is not uncommon for the CI infrastructure itself to fail on
-specific platforms or for so-called "flaky" tests to fail ("be red"). It is
-vital to visually inspect the results of all failed ("red") tests to determine
-whether the failure was caused by the changes in the Pull Request.
+Every Pull Request needs to be tested
+to make sure that it works on the platforms that Project Owl
+supports. This is currently done manually, but automated testing
+may come soon.
 
 ## Notes
 
@@ -458,7 +448,7 @@ and the names of the reviewers). The commit history of your Pull Request,
 however, will stay intact on the Pull Request page.
 
 For the size of "one logical change",
-[0b5191f](https://github.com/Project-Owl/owl/commit/0b5191f15d0f311c804d542b67e2e922d98834f8)
+[0b5191f](https://github.com/nodejs/node/commit/0b5191f15d0f311c804d542b67e2e922d98834f8)
 can be a good example. It touches the implementation, the documentation,
 and the tests, but is still one logical change. All tests should always pass
 when each individual commit lands on the master branch.
@@ -496,6 +486,6 @@ longer to be merged in.
 If you want to know more about the code review and the landing process, see the
 [Collaborator Guide][].
 
-[Code of Conduct]: https://github.com/nodejs/admin/blob/master/CODE_OF_CONDUCT.md
+[Code of Conduct]: https://github.com/Project-Owl/owl/CODE_OF_CONDUCT.md
 [Collaborator Guide]: ../../../CONTRIBUTING.md
 [Project Owl Slack workspace]: https://project--owl.slack.com
