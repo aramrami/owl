@@ -55,7 +55,7 @@ further defined and clarified by project maintainers.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at report@nodejs.org. All
+reported by contacting the project team at contributing@project-owl.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
@@ -65,21 +65,10 @@ Project maintainers who do not follow or enforce the Code of Conduct in good
 faith may face temporary or permanent repercussions as determined by other
 members of the project's leadership.
 
-To learn more about the process of how moderators enforce the Code of Conduct,
-review the [Moderation Policy] and [Requesting Moderation].
-
-[Moderation Policy]: https://github.com/nodejs/admin/blob/master/Moderation-Policy.md#moderation-policy
-[Requesting Moderation]: https://github.com/nodejs/admin/blob/master/Moderation-Policy.md#requesting-moderation
-
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],
 version 1.4, available at https://www.contributor-covenant.org/version/1/4/
 
-## Appendix A: The report@nodejs.org Alias
-
-*Note*: At the current time, all email sent to the `report@nodejs.org` email
-alias is copied to all members of the [Node.js Moderation Team][].
 
 [homepage]: http://contributor-covenant.org
-[Node.js Moderation Team]: https://github.com/nodejs/admin/blob/master/Moderation-Policy.md#current-members
