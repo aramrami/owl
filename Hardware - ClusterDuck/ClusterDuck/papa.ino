@@ -196,23 +196,24 @@ void showReceivedData()
   */
   String waiting = String(millis() - lastSendTime);
 
-  //  u8x8.clear();
-  //  u8x8.drawString(0, 0, (data.fname).c_str());
-  //  u8x8.setCursor(0, 16);  u8x8.print("Phone: "   + data.phone);
-  //  u8x8.setCursor(0, 32);  u8x8.print("Message: "   + data.msg);
-  //  u8x8.setCursor(0, 48);  u8x8.print(waiting);
+    u8x8.clear();
+    u8x8.drawString(0, 0, (data.fname).c_str());
+    u8x8.setCursor(0, 16);  u8x8.print("Phone: "   + data.phone);
+    u8x8.setCursor(0, 32);  u8x8.print("Message: "   + data.msg);
+    u8x8.setCursor(0, 48);  u8x8.print(waiting);
 
-  Serial.println("Name: "         +  data.fname     );
-  Serial.println("Street: "       +  data.street    );
-  Serial.println("Phone: "        +  data.phone     );
-  Serial.println("Occupants: "    +  data.occupants );
-  Serial.println("Dangers: "      +  data.danger    );
-  Serial.println("Vacant: "       +  data.vacant    );
-  Serial.println("First Aid: "    +  data.firstaid  );
-  Serial.println("Water: "        +  data.water     );
-  Serial.println("Food: "         +  data.food      );
-  Serial.println("Mess: "         +  data.msg       );
-  Serial.println("Time: "         +  waiting        );
+  
+    Serial.println("Name: "         +  data.fname     );
+    Serial.println("Street: "       +  data.street    );
+    Serial.println("Phone: "        +  data.phone     );
+    Serial.println("Occupants: "    +  data.occupants );
+    Serial.println("Dangers: "      +  data.danger    );
+    Serial.println("Vacant: "       +  data.vacant    );
+    Serial.println("First Aid: "    +  data.firstaid  );
+    Serial.println("Water: "        +  data.water     );
+    Serial.println("Food: "         +  data.food      );
+    Serial.println("Mess: "         +  data.msg       );
+    Serial.println("Time: "         +  waiting        );
 }
 
 /**

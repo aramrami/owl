@@ -337,7 +337,7 @@ function getForecast(geocode) {
               $(this).find("img.icon").attr("src", "/assets/icon_partlysunny.png")
             } else if (s.includes("windy")) {
                 $(this).find("img.icon").attr("src", "/assets/icon_cloudy.png")
-            } else if (s.includes("cloudy")) {
+            } else if (s.includes("cloud")) {
                 $(this).find("img.icon").attr("src", "/assets/icon_cloudy.png")
             } else if (s.includes("sun") || s.includes("clear")) {
                 $(this).find("img.icon").attr("src", "/assets/icon_sun.png")
