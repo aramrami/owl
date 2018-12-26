@@ -40,7 +40,7 @@ class MainController < ApplicationController
 
     @notifications = Notification.all.order(created_at: :desc).limit(7)
     @incidents = Incident.all.order(created_at: :desc)
-    @incident = Incident.find(current_user.incident.to_i)
+    @incident = Incident.where(id: current_user.incident.to_i).first()
   end
 
   def search
@@ -61,7 +61,7 @@ class MainController < ApplicationController
   end
 
   def weather
-    
+
   end
 
   def civilian
@@ -85,7 +85,7 @@ class MainController < ApplicationController
     @u = User.find(@uid)
     @u.incident = @iid
     @u.save
-    
+
   end
 
   def getincidents
@@ -121,7 +121,7 @@ class MainController < ApplicationController
       format.text { render plain: @username }
     end
   end
-  
+
   def getdirectmessages
     @u1 = params[:sender]
     @u2 = params[:recipient]
@@ -347,7 +347,7 @@ class MainController < ApplicationController
     @response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-    
+
 
     respond_to do |format|
       # format.html { redirect_to "/", notice: 'Gene created.' }
@@ -496,7 +496,7 @@ class MainController < ApplicationController
     # @response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
     #   http.request(request)
     # end
-    
+
     # respond_to do |format|
     #   format.text { render plain: @response.body }
     # end
@@ -521,7 +521,7 @@ class MainController < ApplicationController
     if @text.to_s == ""
       @text = "hello world!"
     end
-    
+
     @startlang = params[:startlang]
     if @startlang.to_s == ""
       @startlang = "en"
@@ -564,7 +564,7 @@ class MainController < ApplicationController
     puts @response.body
     puts " "
     puts @response
-    
+
     respond_to do |format|
       format.text { render plain: @response.body }
     end
@@ -599,14 +599,14 @@ class MainController < ApplicationController
     puts @response.body
     puts " "
     puts @response
-    
+
     respond_to do |format|
       format.text { render plain: @response.body }
     end
   end
 
   def translatelanguages
-    
+
     require 'net/http'
     require 'uri'
 
@@ -628,7 +628,7 @@ class MainController < ApplicationController
     # puts @response.body
     # puts " "
     # puts @response
-    
+
     # respond_to do |format|
     #   format.text { render plain: @response.body }
     # end
@@ -685,7 +685,7 @@ class MainController < ApplicationController
     end
 
     puts @geocode
-    
+
     require 'uri'
     require 'net/http'
 
