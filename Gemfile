@@ -21,7 +21,6 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -43,5 +42,8 @@ gem 'mini_magick'
 gem 'twilio-ruby'
 gem "fog"
 gem 'httparty'
-gem 'cf'
+# gem 'cf'
 gem 'net-telnet'
+
+# Recommended update for CVE-2018-1000544 and CVE-2017-5946
+gem "rubyzip", ">= 1.2.2"
