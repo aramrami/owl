@@ -2,8 +2,7 @@ Rails.application.routes.draw do
 
   get 'priorities/index'
 
-  get 'main/index'
-  root 'main#landing'
+  root 'main#home'
 
   # dynamic resources
   resources :messages
@@ -26,19 +25,15 @@ Rails.application.routes.draw do
 
   # custom html pages
   match '/home', to: 'main#home', via: 'get'
-  match '/landing', to: 'main#landing', via: 'get'
   match '/eye', to: 'main#eye', via: 'get'
   match '/test', to: 'main#test', via: 'get'
   match '/search', to: 'main#search', via: 'get'
   match '/translator', to: 'main#translator', via: 'get'
   match '/leaders', to: 'main#leaders', via: 'get'
   match '/weather', to: 'main#weather', via: 'get'
-  match '/clusterduck', to: 'main#clusterduck', via: 'get'
   match '/clusterdata', to: 'main#clusterdata', via: 'get'
   match '/captive', to: 'main#captive', via: 'get'
   match '/civilian', to: 'main#civilian', via: 'get'
-  match '/owldetails', to: 'main#owldetails', via: 'get'
-  match '/opensource', to: 'main#opensource', via: 'get'
   match '/civdata', to: 'main#civdata', via: 'get'
   match '/duckportal', to: 'main#duckportal', via: 'get'
 

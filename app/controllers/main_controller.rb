@@ -17,28 +17,8 @@ class MainController < ApplicationController
 
   #################### Web Pages
 
-  def index
-    render layout: "landing"
-  end
-
-  def landing
-    render layout: "landing"
-  end
-
-  def owldetails
-    render layout: "landing"
-  end
-
-  def clusterduck
-    render layout: "landing"
-  end
-
-  def opensource
-    render layout: "landing"
-  end
-
   def civdata
-    render layout: "landing"
+    render layout: "application"
   end
 
   def duckportal
@@ -50,6 +30,7 @@ class MainController < ApplicationController
       @message = Message.new
     else
       redirect_to "/signin"
+      return
     end
 
     @notifications = Notification.all.order(created_at: :desc).limit(7)

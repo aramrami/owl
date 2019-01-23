@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render layout: "landing"
+    render layout: "signin"
   end
 
   def edit
