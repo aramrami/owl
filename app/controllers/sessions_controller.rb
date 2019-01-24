@@ -16,12 +16,13 @@ class SessionsController < ApplicationController
     def new
     	if signed_in?
     		sign_out
-    		redirect_to '/'
+			redirect_to '/'
+			return
 	    else
 	    	
 	    end
 
-	    render layout: "landing"
+	    render layout: "signin"
     end
  
 	def create
@@ -29,7 +30,7 @@ class SessionsController < ApplicationController
 	    if user && user.authenticate(params[:session][:password])
 			sign_in user
 			flash[:notice] = "Welcome back " + user.username + "!"
-			redirect_to "/home"
+			redirect_to "/"
 	    else
 	      flash[:error] = 'Invalid email/password combination'
 	      redirect_to "/signin"

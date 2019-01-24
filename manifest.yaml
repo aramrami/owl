@@ -1,6 +1,5 @@
 ---
 applications:
-- name: project-owl-ruby-17
-  memory: 512M
+- memory: 512M
   instances: 1
   random-route: true
