@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class MainControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get main_index_url
+  test 'should get index' do
+    get '/signin'
     assert_response :success
   end
-
 end

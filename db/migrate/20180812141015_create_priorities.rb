@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create priorities table
 class CreatePriorities < ActiveRecord::Migration[5.1]
   def change
     create_table :priorities do |t|

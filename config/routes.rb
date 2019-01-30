@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get 'priorities/index'
 
   root 'main#home'
@@ -10,14 +11,13 @@ Rails.application.routes.draw do
   resources :priorities
   resources :claims
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-
+  resources :sessions, only: %i[new create destroy]
 
   #####   set custom routes for the application   ######
 
   # users, login related custom routes
-  get "sessions/new"
-  get "sessions/destroy"
+  get 'sessions/new'
+  get 'sessions/destroy'
   get 'sessions/new'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
@@ -37,7 +37,6 @@ Rails.application.routes.draw do
   match '/civdata', to: 'main#civdata', via: 'get'
   match '/duckportal', to: 'main#duckportal', via: 'get'
 
-  
   ########## API ROUTES
 
   # rails database api routes
@@ -71,7 +70,7 @@ Rails.application.routes.draw do
   match '/nlu', to: 'main#nlu', via: 'get'
   match '/translate', to: 'main#translate', via: 'get'
   match '/identifylanguage', to: 'main#identifylanguage', via: 'get'
-  
+
   # The Weather Company API Routes
   match '/getweatheralerts', to: 'main#getweatheralerts', via: 'get'
   match '/getweatherforecast', to: 'main#getweatherforecast', via: 'get'
@@ -84,5 +83,4 @@ Rails.application.routes.draw do
   match '/currentsondemand', to: 'main#currentsondemand', via: 'get'
   match '/tropicalcurrent', to: 'main#tropicalcurrent', via: 'get'
   match '/siteobservations', to: 'main#siteobservations', via: 'get'
-
 end

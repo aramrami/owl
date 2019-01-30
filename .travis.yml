@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+  - 2.4.3
+env:
+  - AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=xxx
+before_script:
+  - bundle exec rubocop
