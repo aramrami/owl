@@ -98,8 +98,13 @@ class MainController < ApplicationController
   end
 
   def getincidentlocation
-    @i = Incident.find(current_user.incident.to_i)
-    @l = @i.location
+    @i = Incident.find_by(id: current_user.incident.to_i)
+
+    if @i != nil
+      @l = @i.location
+    else
+      @l = ""
+    end
 
     respond_to do |format|
       format.text {render plain: @l }

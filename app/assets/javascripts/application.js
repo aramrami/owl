@@ -81,8 +81,8 @@ $(document).ready(function() {
 function getIncidents() {
 
   // remove menus and such
-  removeMenu()
-  removeActionElement()
+  removeMenu();
+  removeActionElement();
 
   setTimeout(function() {
 
@@ -90,28 +90,28 @@ function getIncidents() {
 
       // console.log(data)
 
-      var ehtml = ''
+      var ehtml = '';
 
       $(data).each(function(index,el){
         // console.log(el)
-        ehtml = ehtml + '<div class="incident-item"><div class="row"><div class="col-sm-4"><h3>' + el.name + '</h3></div><div class="col-sm-4"><p><b>Created:</b> ' + el.date + '</p></div><div class="col-sm-4"><a data-confirm="Are you sure you want to delete this incident?" class="delete-btn" rel="nofollow" data-method="delete" href="/incidents/' + el.id + '">Delete</a></div></div></div>'
-      })
+        ehtml = ehtml + '<div class="incident-item"><div class="row"><div class="col-sm-4"><h3>' + el.name + '</h3></div><div class="col-sm-4"><p><b>Created:</b> ' + el.date + '</p></div><div class="col-sm-4"><a data-confirm="Are you sure you want to delete this incident?" class="delete-btn" rel="nofollow" data-method="delete" href="/incidents/' + el.id + '">Delete</a></div></div></div>';
+      });
 
       // append to action container
-      $(".action-container").append('<div id="incident-list" class="action-element"><h2>All Incidents</h2><div class="row"><div class="col-sm-12">' + ehtml + '</div></div></div>')
+      $(".action-container").append('<div id="incident-list" class="action-element"><h2 class="text-center">All Incidents</h2> <div class="row"></div> <div class="row"><div class="col-sm-12">' + ehtml + '</div></div></div>');
 
       // add delete onclick
       $("#incident-list a.delete-btn").on("click", function() {
-        $(this).parents(".incident-item").fadeOut("slow")
-      })
+        $(this).parents(".incident-item").fadeOut("slow");
+      });
       // fade in incidents
       setTimeout(function() {
-        $(".action-container #incident-list").fadeIn("fast")
-      },500)
+        $(".action-container #incident-list").fadeIn("fast");
+      },500);
 
-    })
+    });
 
-  }, 200)
+  }, 200);
 }
 
 ////////////////////////////// dashboard fade in UI
