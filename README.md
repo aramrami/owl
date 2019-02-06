@@ -14,7 +14,7 @@ Deploy Owl incident management to geographies without active communications or i
 
 `ClusterDuck` is prototyped over **Arduino, with a WiFi/LoRa solution** and levarages IBM's IoT Platform, Node-RED, Cloudant DB, and Cloud Foundry.
 
-Learn more @ [ClusterDuck](https://github.com/Project-OWL/owl/tree/master/Hardware%20-%20ClusterDuck)
+Learn more @ [ClusterDuck](https://github.com/Project-Owl/duck)
 
 
 ## Open Source Software
