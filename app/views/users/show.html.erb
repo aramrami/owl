@@ -66,7 +66,7 @@ limitations under the License.
 					<div class="content">
 						<div class="organizations">
 							<h3>Organizations I Belong To</h3>
-							<% @userOrgs.each do |u| %>
+							<% @user_orgs.each do |u| %>
 								<h4><%= u.name %>:  <a href="/organizations/<%= u.id.to_s %>">dashboard</a></h4>
 							<% end %>
 						</div>

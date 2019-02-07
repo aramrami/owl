@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create incidents table
 class CreateIncidents < ActiveRecord::Migration[5.1]
   def change
     create_table :incidents do |t|
