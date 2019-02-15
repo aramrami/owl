@@ -2,4 +2,6 @@
 applications:
 - memory: 512M
   instances: 1
+  buildpacks:
+  - ruby_buildpack
   random-route: true
