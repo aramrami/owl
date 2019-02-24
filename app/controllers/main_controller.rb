@@ -939,6 +939,10 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.text { render plain: @response.body }
-    end
-  end
+		end
+	end
+
+	def duckstatus
+		render layout: 'duckstatus'
+	end
 end
