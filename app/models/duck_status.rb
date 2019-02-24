@@ -1,0 +1,2 @@
+class DuckStatus < ApplicationRecord
+end

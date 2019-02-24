@@ -32,6 +32,8 @@
 //
 // = require rails-ujs
 // = require jquery
+// = require angular.min
+// = require ng-map.min
 // = require_tree .
 
 

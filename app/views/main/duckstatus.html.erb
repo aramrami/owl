@@ -1,0 +1,50 @@
+<style type="text/css">
+	ng-map {
+		height: 700px;
+	}
+
+	.custom-marker {
+		font-size: 14px;
+	}
+
+	.gm-style .gm-style-iw-c {
+		min-width: 500px !important;
+	}
+
+	.gm-style .gm-style-iw {
+		font-size: 18px;
+	}
+</style>
+
+<div class="container-fluid" data-ng-app="duckStatus" data-ng-controller="duckStatusController">
+
+	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
+		<ng-map center="[18.321,-66.046]" zoom="11">
+
+			<marker ng-repeat="m in markerData" position="{{m.position}}" on-click="markerClicked({{m.id}})"></marker>
+
+			<info-window id="duckInfo">
+				<div ng-non-bindable>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-6">ID:</div>
+							<div class="col-sm-6">{{selectedDuck.id}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">Battery Level:</div>
+							<div class="col-sm-6">{{selectedDuck.batteryLevel}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">Position:</div>
+							<div class="col-sm-6">{{selectedDuck.position}}</div>
+						</div>
+					</div>
+				</div>
+			</info-window>
+
+		</ng-map>
+
+
+	</div>
+
+</div>

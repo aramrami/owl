@@ -36,7 +36,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   match '/civilian', to: 'main#civilian', via: 'get'
   match '/civdata', to: 'main#civdata', via: 'get'
   match '/duckportal', to: 'main#duckportal', via: 'get'
-
+	match '/duckStatus', to: 'main#duckstatus', via: 'get'
   ########## API ROUTES
 
   # rails database api routes
