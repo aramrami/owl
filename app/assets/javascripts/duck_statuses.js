@@ -24,6 +24,9 @@
 					}
 					});
 				})
+			},
+			close: function() {
+				socket.close();
 			}
 		};
 	}
@@ -66,6 +69,11 @@
 
 	function duckStatusController(duckStatusService, $scope, $http, NgMap, socketFactory) {
 
+		//when we leave this page, we want to make sure we unsubscribe from the socket endpoints
+		$scope.$on("$destroy", function() {
+			socketFactory.close();
+		});
+
 		NgMap.getMap().then(function(map) {
 			$scope.map = map;
 
@@ -76,7 +84,7 @@
 			});
 		});
 
-		//connect up to the socket instance
+		//connect to socket endpoints
 		socketFactory.on("connect", function() {
 			console.log("socket connected");
 		});
