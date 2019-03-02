@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219033857) do
+ActiveRecord::Schema.define(version: 20190302020902) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "claims", force: :cascade do |t|
     t.string "file"
@@ -20,9 +23,11 @@ ActiveRecord::Schema.define(version: 20190219033857) do
   end
 
   create_table "clusterdata", force: :cascade do |t|
-    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "event_type"
+    t.json "payload"
+    t.string "papa_duck_id"
   end
 
   create_table "duck_statuses", force: :cascade do |t|

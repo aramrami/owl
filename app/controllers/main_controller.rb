@@ -945,4 +945,17 @@ class MainController < ApplicationController
 	def duckstatus
 		render layout: 'duckstatus'
 	end
+
+	def getCurrentHealthStatus
+		# get data from database
+
+		@test_array = ['Test', 'Test2']
+
+		# respond to client
+
+		render json: @test_array.to_json
+		# respond_to do |format|
+		# 	format.json { render json: @test_array.to_json }
+		# end
+	end
 end

@@ -3,6 +3,33 @@
 	//module
 	angular.module("duckStatus", ["ngMap"]);
 
+	//socket.io factory
+	function socketFactory($rootScope) {
+		var socket = io.connect("http://ducks-to-db.mybluemix.net");
+		return {
+			on: function(eventName, callback) {
+				socket.on(eventName, function () {
+					var args = arguments;
+					$rootScope.$apply(function () {
+						callback.apply(socket, args);
+					});
+				});
+			},
+			emit: function (eventName, data, callback) {
+				socket.emit(eventName, data, function () {
+					var args = arguments;
+					$rootScope.$apply(function () {
+					if (callback) {
+						callback.apply(socket, args);
+					}
+					});
+				})
+			}
+		};
+	}
+
+	socketFactory.$inject = ["$rootScope"];
+
 
 	function duckStatusService($http) {
 		this.testData = [
@@ -29,14 +56,33 @@
 			{id: 1254, batteryLevel: 50, position: [18.150704, -66.087446]},
 			{id: 1255, batteryLevel: 50, position: [18.140704, -66.077446]}
 		];
+
+		this.getCurrentHealthStatus = function() {
+			return $http.get("/getCurrentHealthStatus");
+		}
 	}
 
 	duckStatusService.$inject = ["$http"];
 
-	function duckStatusController(duckStatusService, $scope, $http, NgMap) {
+	function duckStatusController(duckStatusService, $scope, $http, NgMap, socketFactory) {
 
 		NgMap.getMap().then(function(map) {
 			$scope.map = map;
+
+			//we will retrieve current health status data here
+			//and drop all of that into $scope.markerData
+			duckStatusService.getCurrentHealthStatus().then(function(data) {
+				console.log("api data", data);
+			});
+		});
+
+		//connect up to the socket instance
+		socketFactory.on("connect", function() {
+			console.log("socket connected");
+		});
+
+		socketFactory.on("status", function(data) {
+			console.log("socket data", data);
 		});
 
 		$scope.markerData = duckStatusService.testData;
@@ -57,8 +103,8 @@
 
 	}
 
-	duckStatusController.$inject = ["duckStatusService", "$scope", "$http", "NgMap"];
+	duckStatusController.$inject = ["duckStatusService", "$scope", "$http", "NgMap", "socketFactory"];
 
-	angular.module("duckStatus").service("duckStatusService", duckStatusService).controller("duckStatusController", duckStatusController);
+	angular.module("duckStatus").factory("socketFactory", socketFactory).service("duckStatusService", duckStatusService).controller("duckStatusController", duckStatusController);
 
 })();
