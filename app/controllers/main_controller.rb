@@ -948,14 +948,33 @@ class MainController < ApplicationController
 
 	def getCurrentHealthStatus
 		# get data from database
-
-		@test_array = ['Test', 'Test2']
+		@healthStatusData = Clusterdatum.where(event_type: 'health')
 
 		# respond to client
 
-		render json: @test_array.to_json
+		render json: @healthStatusData.to_json
 		# respond_to do |format|
 		# 	format.json { render json: @test_array.to_json }
 		# end
+	end
+
+	def getDevices
+		@devices = Device.all
+
+		render json: @devices.to_json
+	end
+
+	def getDeviceObservations
+		queryStr = 'select device_id, device_type, latitude, longitude, observation_timestamp '\
+			'from ('\
+			'select device_id, device_type, latitude, longitude, observation_timestamp, rank() over (partition by device_id order by observation_timestamp desc) as rank '\
+			'from device_observations limit 1'\
+			') dt '\
+			'where dt.rank = 1;'
+
+		# This will run a sql string query
+		@deviceObservations = ActiveRecord::Base.connection.execute(queryStr);
+
+		render json: @deviceObservations.to_json
 	end
 end

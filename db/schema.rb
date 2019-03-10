@@ -9,11 +9,20 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20190302020902) do
+# 20190219033857
+ActiveRecord::Schema.define(version: 20190309142759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "android_debug_messages", force: :cascade do |t|
+    t.json "payload"
+    t.string "uuid"
+    t.string "from_device_id"
+    t.string "from_device_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "claims", force: :cascade do |t|
     t.string "file"
@@ -27,10 +36,25 @@ ActiveRecord::Schema.define(version: 20190302020902) do
     t.datetime "updated_at", null: false
     t.string "event_type"
     t.json "payload"
-    t.string "papa_duck_id"
+    t.string "device_id"
+    t.string "uuid"
+    t.string "device_type"
   end
 
-  create_table "duck_statuses", force: :cascade do |t|
+  create_table "device_observations", force: :cascade do |t|
+    t.string "device_id"
+    t.string "device_type"
+    t.string "latitude"
+    t.string "longitude"
+    t.datetime "observation_timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "device_type"
+    t.string "device_id"
+    t.string "auth_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

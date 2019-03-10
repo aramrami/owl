@@ -17,11 +17,9 @@
 </style>
 
 <div class="container-fluid" data-ng-app="duckStatus" data-ng-controller="duckStatusController">
-
 	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
 		<ng-map center="[18.321,-66.046]" zoom="11">
-
-			<marker ng-repeat="m in markerData" position="{{m.position}}" on-click="markerClicked({{m.id}})"></marker>
+			<marker ng-repeat="(key,value) in healthStatusData" position="[{{value.latitude}},{{value.longitude}}]" on-click="markerClicked(key)"></marker>
 
 			<info-window id="duckInfo">
 				<div ng-non-bindable>
@@ -31,20 +29,22 @@
 							<div class="col-sm-6">{{selectedDuck.id}}</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-6">Battery Level:</div>
-							<div class="col-sm-6">{{selectedDuck.batteryLevel}}</div>
+							<div class="col-sm-6">Time On:</div>
+							<div class="col-sm-6">{{selectedDuck.timeOn}}</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">Position:</div>
-							<div class="col-sm-6">{{selectedDuck.position}}</div>
+							<div class="col-sm-6">{{selectedDuck.latitude}}, {{selectedDuck.longitude}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">Duck Class:</div>
+							<div class="col-sm-6">{{selectedDuck.duckClass}}</div>
 						</div>
 					</div>
 				</div>
 			</info-window>
 
 		</ng-map>
-
-
 	</div>
 
 </div>
