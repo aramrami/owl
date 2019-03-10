@@ -36,7 +36,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   match '/civilian', to: 'main#civilian', via: 'get'
   match '/civdata', to: 'main#civdata', via: 'get'
   match '/duckportal', to: 'main#duckportal', via: 'get'
-	match '/duckStatus', to: 'main#duckstatus', via: 'get'
+  match '/duckStatus', to: 'main#duckstatus', via: 'get'
   ########## API ROUTES
 
   # rails database api routes
@@ -50,10 +50,10 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   match '/checkpriorities', to: 'main#checkpriorities', via: 'get'
   match '/checknotifications', to: 'main#checknotifications', via: 'get'
   match '/getnotification', to: 'main#getnotification', via: 'get'
-	match '/getpriority', to: 'main#getpriority', via: 'get'
-	match '/getCurrentHealthStatus', to: 'main#getCurrentHealthStatus', via: 'get'
-	match '/getDevices', to: 'main#getDevices', via: 'get'
-	match '/getDeviceObservations', to: 'main#getDeviceObservations', via: 'get'
+  match '/getpriority', to: 'main#getpriority', via: 'get'
+  match '/getCurrentHealthStatus', to: 'main#getcurrenthealthstatus', via: 'get'
+  match '/getDevices', to: 'main#getdevices', via: 'get'
+  match '/getDeviceObservations', to: 'main#getdeviceobservations', via: 'get'
 
   # Incident overview api stuffs
   match '/newincident', to: 'main#newincident', via: 'get'

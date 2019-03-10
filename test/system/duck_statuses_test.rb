@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# DuckStatusesTest
 require "application_system_test_case"
 
 class DuckStatusesTest < ApplicationSystemTestCase

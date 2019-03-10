@@ -939,42 +939,43 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.text { render plain: @response.body }
-		end
-	end
+    end
+  end
 
-	def duckstatus
-		render layout: 'duckstatus'
-	end
+  def duckstatus
+    render layout: 'duckstatus'
+  end
 
-	def getCurrentHealthStatus
-		# get data from database
-		@healthStatusData = Clusterdatum.where(event_type: 'health')
+  def getcurrenthealthstatus
+    # get data from database
+    @health_status_data = Clusterdatum.where(event_type: 'health')
 
-		# respond to client
+    # respond to client
+    render json: @health_status_data.to_json
+  end
 
-		render json: @healthStatusData.to_json
-		# respond_to do |format|
-		# 	format.json { render json: @test_array.to_json }
-		# end
-	end
+  def getdevices
+    @devices = Device.all
 
-	def getDevices
-		@devices = Device.all
+    render json: @devices.to_json
+  end
 
-		render json: @devices.to_json
-	end
+  def getdeviceobservations
+    query_str = 'select device_id, device_type, latitude, '\
+		  'longitude, observation_timestamp '\
+      'from ('\
+			'select device_id, device_type, '\
+      'latitude, longitude, observation_timestamp, '\
+			'rank() over '\
+      '(partition by device_id order by observation_timestamp desc) '\
+      'as rank '\
+      'from device_observations limit 1'\
+      ') dt '\
+      'where dt.rank = 1;'
 
-	def getDeviceObservations
-		queryStr = 'select device_id, device_type, latitude, longitude, observation_timestamp '\
-			'from ('\
-			'select device_id, device_type, latitude, longitude, observation_timestamp, rank() over (partition by device_id order by observation_timestamp desc) as rank '\
-			'from device_observations limit 1'\
-			') dt '\
-			'where dt.rank = 1;'
+    # This will run a sql string query
+    @device_observations = ActiveRecord::Base.connection.execute(query_str)
 
-		# This will run a sql string query
-		@deviceObservations = ActiveRecord::Base.connection.execute(queryStr);
-
-		render json: @deviceObservations.to_json
-	end
+    render json: @device_observations.to_json
+  end
 end

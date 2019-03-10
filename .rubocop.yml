@@ -4,3 +4,11 @@ Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
   Max: 1000
+Style/StringLiterals:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - node_modules/**/*

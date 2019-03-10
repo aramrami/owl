@@ -128,23 +128,24 @@
 		});
 
 		socketFactory.on("civilian", function(data) {
-			console.log("socket data", data);
+			var jsonData = JSON.parse(String(data));
+			console.log("socket data", jsonData);
 			$scope.incomingMessages.push(data);
 		});
 
 		socketFactory.on("health", function(data) {
-			console.log("health data socket", data);
-			$scope.incomingMessages.push(data);
+			var stringData = String(data);
+			var jsonData = JSON.parse(stringData);
+			console.log("health data socket", jsonData);
+			$scope.incomingMessages.push(jsonData);
 
-			var duckData = json.parse(data["Duck Data"]);
-			console.log("Trying something here?");
-			console.log("incoming duck data", duckData);
-			var duckId = duckData["Duck ID"];
-			var coordinates = duckData["Coordinates"].split(",");
+			var duckData = jsonData["Duck Data"];
+			var duckId = duckData[0]["Duck ID"];
+			var coordinates = duckData[0]["Coordinates"].split(",");
 			var latitude = coordinates[0];
 			var longitude = coordinates[1];
-			var duckClass = duckData["Class"];
-			var timeOn = duckData["Time on"];
+			var duckClass = duckData[0]["Class"];
+			var timeOn = duckData[0]["Time on"];
 
 			$scope.healthStatusData[duckId] = {
 				"latitude": latitude,
