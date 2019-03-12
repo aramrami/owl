@@ -53,7 +53,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   match '/getpriority', to: 'main#getpriority', via: 'get'
   match '/getCurrentHealthStatus', to: 'main#getcurrenthealthstatus', via: 'get'
   match '/getDevices', to: 'main#getdevices', via: 'get'
-	match '/getDeviceObservations', to: 'main#getdeviceobservations', via: 'get'
+  match '/getDeviceObservations', to: 'main#getdeviceobservations', via: 'get'
   match '/getCivilianData', to: 'main#getciviliandata', via: 'get'
 
   # Incident overview api stuffs

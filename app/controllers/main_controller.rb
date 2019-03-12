@@ -977,7 +977,7 @@ class MainController < ApplicationController
     @device_observations = ActiveRecord::Base.connection.execute(query_str)
 
     render json: @device_observations.to_json
-	end
+  end
 
   def getciviliandata
     @civilian_data = Clusterdatum.where(event_type: 'civilian')
