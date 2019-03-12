@@ -961,7 +961,7 @@ class MainController < ApplicationController
   end
 
   def getdeviceobservations
-    query_str = 'select device_id, device_type, latitude, '\
+    query_str = 'select distinct device_id, device_type, latitude, '\
 		  'longitude, observation_timestamp '\
       'from ('\
 			'select device_id, device_type, '\
@@ -969,7 +969,7 @@ class MainController < ApplicationController
 			'rank() over '\
       '(partition by device_id order by observation_timestamp desc) '\
       'as rank '\
-      'from device_observations limit 1'\
+      'from device_observations'\
       ') dt '\
       'where dt.rank = 1;'
 
@@ -977,5 +977,10 @@ class MainController < ApplicationController
     @device_observations = ActiveRecord::Base.connection.execute(query_str)
 
     render json: @device_observations.to_json
+	end
+
+  def getciviliandata
+    @civilian_data = Clusterdatum.where(event_type: 'civilian')
+    render json: @civilian_data.to_json
   end
 end
