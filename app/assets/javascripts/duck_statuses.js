@@ -35,10 +35,6 @@
 
 
 	function duckStatusService($http, $q) {
-		this.healthStatusData = [];
-		this.devices = [];
-		this.deviceObservations = [];
-
 		this.getAllStaticData = function() {
 			var promises = [];
 
@@ -51,6 +47,10 @@
 			promises.push(request);
 
 			url = "/getDeviceObservations";
+			request = $http.get(url);
+			promises.push(request);
+
+			url = "/getCivilianData";
 			request = $http.get(url);
 			promises.push(request);
 
@@ -71,6 +71,7 @@
 		$scope.devices = [];
 		$scope.deviceObservations = [];
 		$scope.incomingMessages = [];
+		$scope.civilianData = {};
 
 		NgMap.getMap().then(function(map) {
 			$scope.map = map;
@@ -94,19 +95,22 @@
 					var duckClass = duckData[0]["Class"];
 					var timeOn = duckData[0]["Time on"];
 
-					$scope.healthStatusData[duckId] = {
-						"latitude": latitude,
-						"longitude": longitude,
-						"duckClass": duckClass,
-						"timeOn": timeOnDisplayCalc(timeOn)
-					};
+					if(latitude > 0 && longitude > 0) {
+
+						$scope.healthStatusData[duckId] = {
+							"latitude": latitude,
+							"longitude": longitude,
+							"duckClass": duckClass,
+							"timeOn": timeOnDisplayCalc(timeOn)
+						};
+					}
 				}
 
 				var deviceObservations = data[2].data;
 				for(var i in deviceObservations) {
 					var duckData = deviceObservations[i];
 
-					var duckId = duckData["device_id"];
+					var duckId = duckData["device_id"].split(",")[0];
 					var latitude = duckData["latitude"];
 					var longitude = duckData["longitude"];
 					var duckClass = duckData["device_type"];
@@ -118,6 +122,15 @@
 						"duckClass": duckClass,
 						"timeOn": timeOn
 					};
+
+					console.log(duckId, latitude, longitude, duckClass);
+				}
+
+				var civilianData = data[3].data;
+				for(var i in civilianData) {
+					var id = civilianData[i]["uuid"];
+
+					$scope.civilianData[id] = civilianData[i];
 				}
 			});
 		});
@@ -130,7 +143,11 @@
 		socketFactory.on("civilian", function(data) {
 			var jsonData = JSON.parse(String(data));
 			console.log("socket data", jsonData);
-			$scope.incomingMessages.push(data);
+			$scope.incomingMessages.push(jsonData);
+
+			var id = jsonData["uuid"];
+
+			$scope.civilianData[id] = jsonData;
 		});
 
 		socketFactory.on("health", function(data) {
@@ -153,7 +170,6 @@
 				"duckClass": duckClass,
 				"timeOn": timeOnDisplayCalc(timeOn)
 			};
-
 		});
 
 		$scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAwpA8PHX57_8RCU8iCCDdIEViCWrpy44k";
@@ -166,6 +182,35 @@
 				$scope.selectedDuck = selectedItem;
 				$scope.map.showInfoWindow("duckInfo", this);
 			}
+
+		};
+
+		$scope.visualizeDataPath = function(key) {
+			$scope.shapePath = [];
+			var path = $scope.civilianData[key].payload.path;
+
+			if(path != undefined && path != null && path.length > 0) {
+				var pathSplit = path.split(",");
+
+				//we can't draw lines to only one point
+				if(pathSplit.length > 1) {
+					for(var i in pathSplit) {
+						var thisPath = pathSplit[i];
+
+						if(thisPath != undefined && thisPath != null && thisPath.length > 0) {
+							//lookup the coordinates to this device ID
+							var device = $scope.healthStatusData[thisPath];
+							console.log(device);
+
+							if(device != undefined && device != null) {
+								var item = [device.latitude, device.longitude];
+								$scope.shapePath.push(item);
+							}
+						}
+					}
+				}
+			}
+
 
 		};
 
