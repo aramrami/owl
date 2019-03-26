@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# DuckStatusesControllerTest
 require 'test_helper'
 
 class DuckStatusesControllerTest < ActionDispatch::IntegrationTest
@@ -17,7 +20,7 @@ class DuckStatusesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create duck_status" do
     assert_difference('DuckStatus.count') do
-      post duck_statuses_url, params: { duck_status: {  } }
+      post duck_statuses_url, params: { duck_status: {} }
     end
 
     assert_redirected_to duck_status_url(DuckStatus.last)
@@ -34,7 +37,7 @@ class DuckStatusesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update duck_status" do
-    patch duck_status_url(@duck_status), params: { duck_status: {  } }
+    patch duck_status_url(@duck_status), params: { duck_status: {} }
     assert_redirected_to duck_status_url(@duck_status)
   end
 

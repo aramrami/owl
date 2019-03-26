@@ -5,3 +5,4 @@ env:
   - AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=xxx
 before_script:
   - bundle exec rubocop
+  - "psql -c 'create database travis;' -U postgres"

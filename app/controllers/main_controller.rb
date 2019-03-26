@@ -939,10 +939,48 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.text { render plain: @response.body }
-		end
-	end
+    end
+  end
 
-	def duckstatus
-		render layout: 'duckstatus'
-	end
+  def duckstatus
+    render layout: 'duckstatus'
+  end
+
+  def getcurrenthealthstatus
+    # get data from database
+    @health_status_data = Clusterdatum.where(event_type: 'health')
+
+    # respond to client
+    render json: @health_status_data.to_json
+  end
+
+  def getdevices
+    @devices = Device.all
+
+    render json: @devices.to_json
+  end
+
+  def getdeviceobservations
+    query_str = 'select distinct device_id, device_type, latitude, '\
+		  'longitude, observation_timestamp '\
+      'from ('\
+			'select device_id, device_type, '\
+      'latitude, longitude, observation_timestamp, '\
+			'rank() over '\
+      '(partition by device_id order by observation_timestamp desc) '\
+      'as rank '\
+      'from device_observations'\
+      ') dt '\
+      'where dt.rank = 1;'
+
+    # This will run a sql string query
+    @device_observations = ActiveRecord::Base.connection.execute(query_str)
+
+    render json: @device_observations.to_json
+  end
+
+  def getciviliandata
+    @civilian_data = Clusterdatum.where(event_type: 'civilian')
+    render json: @civilian_data.to_json
+  end
 end

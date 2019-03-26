@@ -34,6 +34,7 @@
 // = require jquery
 // = require angular.min
 // = require ng-map.min
+// = require socket.io-client/dist/socket.io
 // = require_tree .
 
 
