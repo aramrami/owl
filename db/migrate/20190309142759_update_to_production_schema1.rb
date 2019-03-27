@@ -29,7 +29,7 @@ class UpdateToProductionSchema1 < ActiveRecord::Migration[5.1]
       t.string :device_id
       t.string :auth_token
       t.timestamps
-		end
+    end
 
     create_table :deployment_test_reports do |t|
       t.string :name
