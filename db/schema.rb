@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20190309142759) do
     t.string "device_id"
     t.string "uuid"
     t.string "device_type"
+	end
+
+  create_table "deployment_test_reports", force: :cascade do |t|
+    t.string "name"
+    t.json "results"
+    t.string "message_success_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "device_observations", force: :cascade do |t|
