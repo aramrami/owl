@@ -1,7 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
+  event_type: Test
+  payload: {}
+  device_id: Test
+  uuid: Test
+  device_type: Test
 
 two:
-  content: MyText
+  event_type: Test
+  payload: {}
+  device_id: Test
+  uuid: Test
+  device_type: Test

@@ -28,5 +28,8 @@ module Owl
     # here. Application configuration should go into files in
     # config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # For including packages installed via node_modules
+    config.assets.paths << Rails.root.join('node_modules')
   end
 end
