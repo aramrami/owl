@@ -6,3 +6,4 @@ env:
 before_script:
   - bundle exec rubocop
   - "psql -c 'create database travis;' -U postgres"
+  - npm install
